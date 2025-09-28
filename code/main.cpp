@@ -38,7 +38,10 @@ void printAllEdges(const vector< vector< pair<size_t, ptrdiff_t> > >& tree) {
 
 		for (const pair<size_t, ptrdiff_t>& edge : tree[i]) {
 
-			cout << "e = {" << i << ", " << edge.first << "}, w = " << edge.second << "\n";
+			if (i < edge.first) {
+
+				cout << "e = {" << i << ", " << edge.first << "}, w = " << edge.second << "\n";
+			}
 		}
 	}
 }
@@ -60,8 +63,8 @@ int main(int, char* []) {
 
 	/// Edges incident to vertex 0.
 	graph.push_back( vector< pair<size_t, ptrdiff_t> >{ {0, 2}, { 1, 1 } } );
-
+	
 	vector< vector< pair<size_t, ptrdiff_t> > > minimumSpanningTree = primAlgorithm(graph);
-
+	
 	printAllEdges(minimumSpanningTree);
 }

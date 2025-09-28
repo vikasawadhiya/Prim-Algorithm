@@ -39,7 +39,7 @@ namespace graphLibrary {
 		/// @brief  It is used as function object to compare edges.
 		/// It is used as greater-than comparator to turn std::priority_queue to min-heap.
 		/// 
-		class edgeEntryGreaterThanComparator {
+		class EdgeElementGreaterThanComparator {
 
 		public:
 			bool operator() (const EdgeQueueElement& edge1, const EdgeQueueElement& edge2) const {
@@ -48,7 +48,7 @@ namespace graphLibrary {
 			}
 		};
 
-		using EdgeQueue = priority_queue< EdgeQueueElement, vector<EdgeQueueElement>, edgeEntryGreaterThanComparator >;
+		using EdgeQueue = priority_queue< EdgeQueueElement, vector<EdgeQueueElement>, EdgeElementGreaterThanComparator >;
 	}
 
 	/// @brief If a graph is a disconnect graph it requires multiple runs of Prim's algorithm.
@@ -87,6 +87,7 @@ namespace graphLibrary {
 				++selectedVertexCount;
 
 				tree[u].emplace_back(v, w);
+				tree[v].emplace_back(u, w);
 
 				if ( !( selectedVertexCount < graph.size() ) ) {
 
